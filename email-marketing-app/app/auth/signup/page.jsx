@@ -11,78 +11,7 @@ import OauthComponent from '../OauthComponent';
 // import { useRouter } from "next/router"; // Import useRouter from Next.js
 
 const Signup = () => {
-  // State to manage form inputs and their validation statuses
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
 
-  // Function to handle input changes
-  const handleUserNameChange = (event) => {
-    setUserName(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  // Function to validate form inputs
-  const validateForm = () => {
-    const errors = {};
-
-    // Validate username
-    if (!userName.trim()) {
-      errors.userName = "Username is required";
-    }
-
-    // Validate password
-    if (!password.trim()) {
-      errors.password = "Password is required";
-    }
-
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  // Function to handle form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const isValid = validateForm();
-
-    if (isValid) {
-      try {
-        // Simulated API call using fetch
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/posts",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userName, password }),
-          }
-        );
-
-        if (response.ok) {
-          console.log("Form submitted successfully!");
-          // Redirect to another page upon successful form submission
-          router.push("/success"); // Replace '/success' with the path you want to redirect to
-        } else {
-          console.error("Form submission failed");
-          // Handle other scenarios like response status not OK
-        }
-      } catch (error) {
-        console.error("An error occurred:", error);
-        // Handle fetch error
-      }
-    }
-  };
-
-  return (
-    <div>
-      <div className="lg:flex">
-       <div
-          className="lg:w-[720px] h-[100vh]"
 	// Access routing functionality
 	const router = useRouter();
 	// Initialize Supabase client
@@ -178,7 +107,7 @@ const Signup = () => {
 			{/* Signup form */}
 			<div className="lg:flex">
         <div
-          className="lg:w-[720px] h-[100vh] lg:ps-[247px] lg:pr-[109px] xs:ps-[10px] pt-[160px]"
+          className="lg:w-[720px] h-[100vh]"
           style={{
             background: `linear-gradient(141deg, #F5F0FF 0%, #EFF6FE 50.36%, #EDFAF5 100%)`,
           }}
@@ -211,20 +140,16 @@ const Signup = () => {
        </div>
         <div className="lg:w-[720px] bg-[#fff] lg:ps-[109px] lg:pt-[160px] xs:pt-[100px] xs:ps-[10px] xs:px-[0.85rem] md:px-[0.85rem]">
           <h3 className="text-[#17181A] text-[24px] font-[600] leading-[32px] font-Poppins ms-[1rem]">
-            Create a personal account
+            Create a an account
           </h3>
           <form className="mt-[16px]" onSubmit={handleSubmit}>
-            <label className="text-[#515458] text-[12px] font-[500] font-Poppins">
-              user name
             <label className="text-[#515458] text-[12px] font-[500] font-Poppins mt-[22px]">
-              Email
+              user name
             </label>
             <input
               type="text"
               placeholder="enter user name"
-              className="text-[#575757] bg-[#fff] border-[#B7BFC7] border-[1px] border-solid rounded-[8px] text-[16px] font-[400] font-Poppins outline-none lg:w-[364px] xs:w-[100%] md:w-[600px] login-input-text"
-              placeholder="enter email"
-              className="text-[#575757] bg-[#fff] border-[#B7BFC7] border-[1px] border-solid rounded-[8px] text-[16px] font-[400] leading-[24px] font-Poppins mt-[4px] outline-none lg:w-[364px] xs:w-[100%] md:w-[600px]"
+              className="text-[#575757] bg-[#fff] border-[#B7BFC7] border-[1px] border-solid rounded-[8px] text-[16px] font-[400] font-Poppins outline-none lg:w-[364px] xs:w-[100%] md:w-[600px] login-input-text mt-[-1rem]"
               style={{ padding: "12px 0px 12px 12px", height: "48px" }}
               value={email}
               onChange={handleEmailChange}
@@ -237,7 +162,7 @@ const Signup = () => {
             <input
               type="password"
               placeholder="enter password"
-              className="text-[#575757] bg-[#fff] border-[#B7BFC7] border-[1px] border-solid rounded-[8px] text-[16px] font-[400] leading-[24px] font-Poppins outline-none lg:w-[364px] xs:w-[100%] md:w-[600px]"
+              className="text-[#575757] bg-[#fff] border-[#B7BFC7] border-[1px] border-solid rounded-[8px] text-[16px] font-[400] leading-[24px] font-Poppins outline-none lg:w-[364px] xs:w-[100%] md:w-[600px] mt-[-1rem]"
               style={{ padding: "12px 0px 12px 12px", height: "48px" }}
               value={password}
               onChange={handlePasswordChange}
